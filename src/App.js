@@ -8,11 +8,18 @@ import GameDetails from "./components/GameDetails";
 import GameCatalog from "./components/GameCatalog"
 
 function App() {
+  const routes = {
+    '/home': WelcomeWorld,
+    '/games': GameCatalog,
+    '/login': Login,
+    '/register': Register,
+    '/create-game': CreateGame,
+    '/edit-game': EditGame
+  }
+
   return (
     <div id="box">
-
       <Header />
-
 
       <main id="main-content">
         <WelcomeWorld />
