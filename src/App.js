@@ -1,4 +1,4 @@
-import {useState, createElement} from 'react';
+import { useState, createElement } from 'react';
 
 import Header from "./components/Header";
 import WelcomeWorld from "./components/WelcomeWorld";
@@ -13,24 +13,35 @@ import ErrorPage from './components/ErrorPage';
 function App() {
   const [page, setPage] = useState('/home');
 
-  const routes = {
-    '/home': <WelcomeWorld/>,
-    '/games': <GameCatalog/>,
-    '/login': <Login/>,
-    '/register': <Register/>,
-    '/create-game': <CreateGame/>
-  };
-
   const navigationChangeHandler = (path) => {
     setPage(path);
   };
+
+  
+
+  const router = (path) => {
+    let pathNames = path.split('/');
+    let rootPath = pathNames[1];
+    let argument = pathNames[2];
+
+    const routes = {
+      'home': <WelcomeWorld />,
+      'games': <GameCatalog navigationChangeHandler={navigationChangeHandler} />,
+      'login': <Login />,
+      'register': <Register />,
+      'create-game': <CreateGame />,
+      'details' : <GameDetails id={argument} />
+    };
+
+    return routes[rootPath]
+  }
 
   return (
     <div id="box">
       <Header navigationChangeHandler={navigationChangeHandler} />
 
       <main id="main-content">
-        { routes[page] || <ErrorPage/> }
+        { router(page) || <ErrorPage />}
       </main>
 
 
