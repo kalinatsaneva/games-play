@@ -40,7 +40,7 @@ const GameDetails = ({
                         </li>
                         <li className="comment">
                             <p>Content: The best game.</p>
-                        </li>
+                        </li> 
                     </ul>
 
                     <p className="no-comment">No comments.</p>
