@@ -5,9 +5,7 @@ import { useState, useEffect } from 'react';
 import LatestGameCard from './LatestGames';
 
 
-const WelcomeWorld = ({
-    navigationChangeHandler
-}) => {
+const WelcomeWorld = () => {
     const [games, setGames] = useState([]);
 
     useEffect(() => {
@@ -33,8 +31,7 @@ const WelcomeWorld = ({
                     games.length > 0 
                     ? games.map(x => 
                     <LatestGameCard 
-                    key={x._id} 
-                    navigationChangeHandler={navigationChangeHandler} 
+                    key={x._id}  
                     game={x} 
                     />)
                     : <p className="no-articles">No games yet</p>

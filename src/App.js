@@ -1,4 +1,5 @@
 import { useState, createElement } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from "./components/Header";
 import WelcomeWorld from "./components/WelcomeWorld";
@@ -11,37 +12,24 @@ import GameCatalog from "./components/GameCatalog/GameCatalog"
 import ErrorPage from './components/ErrorPage';
 
 function App() {
-  const [page, setPage] = useState('/home');
-
-  const navigationChangeHandler = (path) => {
-    setPage(path);
-  };
-
-  
-
-  const router = (path) => {
-    let pathNames = path.split('/');
-    let rootPath = pathNames[1];
-    let argument = pathNames[2];
-
-    const routes = {
-      'home': <WelcomeWorld navigationChangeHandler={navigationChangeHandler}/>,
-      'games': <GameCatalog navigationChangeHandler={navigationChangeHandler} />,
-      'login': <Login />,
-      'register': <Register />,
-      'create-game': <CreateGame />,
-      'details' : <GameDetails id={argument} />
-    };
-
-    return routes[rootPath]
-  }
 
   return (
     <div id="box">
-      <Header navigationChangeHandler={navigationChangeHandler} />
+      <Header />
 
       <main id="main-content">
-        { router(page) || <ErrorPage />}
+        <Switch>
+          <Route path="/" exact component={WelcomeWorld} />
+          <Route path="/games/:gameId" component={GameDetails} />
+          <Route path="/games" exact component={GameCatalog} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/logout" render={(props) => {
+            console.log('logged out');
+
+            return <Redirect to="/"/>
+          }} />
+        </ Switch>
       </main>
 
 

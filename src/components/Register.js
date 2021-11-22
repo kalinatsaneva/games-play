@@ -3,10 +3,10 @@
 const Register = () => {
 
     return (
-      <section id="register-page" class="content auth">
+      <section id="register-page" className="content auth">
       <form id="register">
-        <div class="container">
-          <div class="brand-logo"></div>
+        <div className="container">
+          <div className="brand-logo"></div>
           <h1>Register</h1>
 
           <label htmlFor="email">Email:</label>
@@ -18,9 +18,9 @@ const Register = () => {
               <label htmlFor="con-pass">Confirm Password:</label>
               <input type="password" name="confirm-password" id="confirm-password"/>
 
-                <input class="btn submit" type="submit" value="Register"/>
+                <input className="btn submit" type="submit" value="Register"/>
 
-                  <p class="field">
+                  <p className="field">
                     <span>If you already have profile click <a href="#">here</a></span>
                   </p>
                 </div>
